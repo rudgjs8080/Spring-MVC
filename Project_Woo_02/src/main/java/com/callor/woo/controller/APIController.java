@@ -99,8 +99,8 @@ public class APIController {
 		List<WeatherDTO> afterTomorrow = (List<WeatherDTO>) weather.get("afterTomorrow");
 
 		//		log.debug("날씨전체 맵 {}", weather.toString());
-		//		log.debug("오늘날씨 {}",today.toString());
-		log.debug("내일날씨 {}", tomorrow.toString());
+				log.debug("오늘날씨 {}",today.toString());
+		// 		log.debug("내일날씨 {}", tomorrow.toString());
 		//		log.debug("2일뒤날씨 {}",afterTomorrow.toString());
 
 		String time = tService.time();
