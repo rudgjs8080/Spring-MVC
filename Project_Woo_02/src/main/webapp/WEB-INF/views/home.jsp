@@ -9,11 +9,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/weather.jsp" %>
 </body>
 <script>
 var rootPath = "${rootPath}"
 </script>
-<script src="${rootPath}/static/js/location.js?2021-07-15-02"> </script>
+<script src="${rootPath}/static/js/location.js?2021-07-19-01"> </script>
 
 </html>

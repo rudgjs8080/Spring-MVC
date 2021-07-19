@@ -1,10 +1,33 @@
 @charset "UTF-8";
 
+@font-face {
+	font-family: "TmoneyRoundWindExtraBold";
+	src:
+		url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff")
+		format("woff");
+}
+
 * {
 	box-sizing: border-box;
 	margin: 1px;
 	padding: 0;
-	color: #333333;
+	font-family: "TmoneyRoundWindExtraBold";
+}
+
+h1, h4 {
+	font-family: "TmoneyRoundWindExtraBold";
+	color: white;
+	text-shadow: 0px 0px 20px rgb(234, 237, 176);
+}
+
+.header h1 {
+	font-size: 90px;
+	text-align: center;
+}
+
+.header h4 {
+	font-size: 32px;
+	text-align: center;
 }
 
 .container {
@@ -39,14 +62,12 @@
 	text-align: right;
 }
 
-button.lg, button.jo {
-	width: 70px;
+button.logout, button.mypage {
+	padding: 2px 10px;
 	cursor: pointer;
 	border: 0;
-	border-radius: 5px;
 	background-color: transparent;
-	font-size: 25px;
-	font: bold;
+	font-size: 20px;
 }
 
 .item-2 {
@@ -68,9 +89,10 @@ button.lg, button.jo {
 
 .w_2 {
 	grid-column: 3/4;
-	text-align: center;
+	justify-content: center;
 	font-size: 150%;
 	display: flex;
+	flex-direction: column;
 }
 
 .w_3 {
@@ -81,10 +103,12 @@ button.lg, button.jo {
 .w_3_a {
 	flex: 1;
 	flex-direction: column;
-	margin: 0.5% 3%;
+	margin: 1% 3%;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 1fr 2fr;
+	text-align: center;
+	font-size: 150%;
 }
 
 .w_3_a div:nth-child(1) {
@@ -104,8 +128,13 @@ button.lg, button.jo {
 }
 
 .w_3_a img {
-	margin-left: 30%;
-	width: 40%;
+	margin-left: 5%;
+	width: 45%;
+}
+
+.w_3_a:nth-child(4) img {
+	margin-l1ft: 5%;
+	width: 35%
 }
 
 .w_4, .w_5 {
@@ -115,11 +144,24 @@ button.lg, button.jo {
 	overflow: auto;
 }
 
+.w_5 {
+	margin-top: 5px;
+}
+
 .w_4_a, .w_5_a {
+	justify-content: space-around;
 	flex: 1;
 	display: flex;
-	flex-direction: column;
-	margin: 0.3%;
+	flex-direction: column;z
+	margin: 0.8%;
+	border: 1px solid white;
+	box-shadow: 0 0 10px gray;
+	border-radius: 20px;
+}
+
+.w_4_a:nth-child(1), .w_5_a:nth-child(1) {
+	background-color: #aaa;
+	color: white;
 }
 
 .w_4_a img, .w_5_a img {
@@ -212,7 +254,6 @@ div.w_data_o::-webkit-scrollbar-thumb {
 div.w_data_div_o {
 	position: inherit;
 	flex: 1 1 35%;
-	/*border: 2px solid green;*/
 	text-align: center;
 	margin: 0 10px;
 	flex-wrap: wrap;
@@ -221,7 +262,7 @@ div.w_data_div_o {
 
 div.w_data_div_o img {
 	width: 50%;
-	/*border: 1px solid paleturquoise;*/
+	height: 50%;
 }
 
 figure.snip1200:hover img.clothes, figure.snip1200:hover p {
@@ -258,8 +299,27 @@ figure.snip1200:hover div.w_data, figure.snip1200:hover div.w_data_o {
 	}
 	.w_2 {
 		grid-column: 1/4;
-		justify-content: center;
+		justify-content: space-around;
 		font-size: 150%;
 		display: flex;
+		flex-direction: row;
+	}
+	.w_3_a {
+		flex: 1;
+		flex-direction: column;
+		margin: 0.5% 3%;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr 2fr;
+		text-align: center;
+		font-size: 120%;
+	}
+	.w_3_a img {
+		margin-left: 5%;
+		width: 65%;
+		margin-top: 10%;
+	}
+	.w_3_a:nth-child(4) img {
+		width: 55%;
 	}
 }

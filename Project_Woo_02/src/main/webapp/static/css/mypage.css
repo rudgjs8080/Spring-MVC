@@ -46,15 +46,16 @@
       /* 상단 로고 부분 */
       color: white;
       text-shadow: 0px 0px 20px rgb(234 237 176);
+      text-align: center;
+      font-family: "TmoneyRoundWindExtraBold";
     }
     h1 {
-      text-align: center;
-      font-size: 70px;
+      font-size: 90px;
       height: 10px;
     }
     h4 {
-      font-size: 28px;
-      text-align: center;
+      font-size: 32px;
+
     }
     @keyframes sparkle { /* input칸 호버시 액션효과 */
       from {
@@ -119,24 +120,21 @@
 
     .btn_home, .btn_update {
       display: inline-block;
-      color: rgb(90, 90, 90);
-      transition: all 0.3s ease-out;
-      background: linear-gradient(
-        270deg,
-        rgba(223, 190, 106, 0.8),
-        rgba(146, 111, 52, 0.8),
-        rgba(34, 34, 34, 0),
-        rgba(34, 34, 34, 0)
-      );
-      background-position: 1% 50%;
-      background-size: 300% 300%;
-      border: 1px solid rgba(223, 190, 106, 0.3);
-      padding: 5px;
-      font-weight: bold;
-      font-size: 15px;
-    }
+	   color: rgb(90, 90, 90);
+	   transition: all 0.3s ease-out;
+	   background: linear-gradient(270deg, rgba(223, 190, 190, 0.8), grey,
+	       rgba(34, 34, 34, 0), rgba(34, 34, 34, 0));
+	   background-position: 1% 50%;
+	   background-size: 300% 300%;
+	   border: 0;
+	   border-radius: 5px;
+	   padding: 5px;
+	   font-weight: bold;
+	   font-size: 15px;
+	}
 
-    .btn:hover {
+
+    .btn_home:hover, .btn_update:hover {
       background-position: 99% 50%;
     }
     button {

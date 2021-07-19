@@ -18,37 +18,22 @@
 document.addEventListener("DOMContentLoaded", ()=>{
 	document.querySelector("div.log_join").addEventListener("click", (e)=> {
 		let tagName = e.target.tagName;
-		//alert(tagName)
 		
 		if(tagName === "BUTTON") {
 			let menuText = e.target.textContent;
-			if (menuText === "login") {
+			if (menuText === "Login") {
 				document.location.href="${rootPath}/login";
 			} else if (menuText === "Join") {
 				document.location.href="${rootPath}/join"
-			}  else if (menuText === "logout") {
-				document.location.href="${rootPath}/logout"
-			}
 		}
+		}		
 	})
-	
-	/*
-	document.querySelector("li#li_log").addEventListener("click",(e)=>{
-		document.location.href="${rootPath}/login"
-	})
-	document.querySelector("li#li_join").addEventListener("click",(e)=>{
-		document.location.href="${rootPath}/join"
-	})
-	document.querySelector("li#li_logout").addEventListener("click",(e)=>{
-		document.location.href="${rootPath}/logout"
-	})
-	*/
-})
+	})	
 </script>
 </head>
 
 <link
-	href="${rootPath}/static/css/home_B.css?ver=2021-07-16-004"
+	href="${rootPath}/static/css/home_B.css?ver=2021-07-19-003"
 	rel="stylesheet" />
 <body>
 
@@ -57,46 +42,48 @@ document.addEventListener("DOMContentLoaded", ()=>{
 			<div class="item-1">
 
 				<div class="log_join">
-					<button class="lg">login</button>
+					<button class="lg">Login</button>
 					<button class="jo">Join</button>
 				</div>
 				<div class="header">
-					<h1 style="font-size: 90px; text-align: center">W O O</h1>
-					<h4 style="font-size: 32px; text-align: center">WEATHER & OOTD</h4>
-
+					<h1>W O O</h1>
+					<h4>WEATHER & OOTD</h4>
 				</div>
 			</div>
 			<div class="item-2">
-				<div
-					class="w_1">
-
+				<div class="w_1">
 					<c:forEach
 						items="${TODAY}"
 						var="TD">
-
 						<c:choose>
+							<c:when
+								test="${TD.category == '강수확률' && TD.fcstTime == TIME && TD.fcstValue == '100%'}">
+								<div>
+									<img src="${rootPath}/static/images/비.png">
+								</div>
+							</c:when>
+							<c:when
+								test="${TD.category == '6시간 적설량' && TD.fcstTime == TIME && TD.fcstValue != '없음'}">
+								<div>
+									<img src="${rootPath}/static/images/눈.png">
+								</div>
+							</c:when>
 							<c:when
 								test="${TD.category == '하늘상태' && TD.fcstValue =='맑음' && TD.fcstTime == TIME}">
 								<div>
-									<img
-										src="${rootPath}/static/images/맑음.png"
-										width="100px">
+									<img src="${rootPath}/static/images/맑음.png">
 								</div>
 							</c:when>
 							<c:when
 								test="${TD.category == '하늘상태' && TD.fcstValue =='구름많음'&&TD.fcstTime == TIME }">
 								<div>
-									<img
-										src="${rootPath}/static/images/구름많음.png"
-										width="100px">
+									<img src="${rootPath}/static/images/구름많음.png">
 								</div>
 							</c:when>
 							<c:when
 								test="${TD.category == '하늘상태' && TD.fcstValue =='흐림' &&TD.fcstTime == TIME}">
 								<div>
-									<img
-										src="${rootPath}/static/images/흐림.png"
-										width="100px">
+									<img src="${rootPath}/static/images/흐림.png">
 								</div>
 							</c:when>
 							<c:otherwise>
@@ -105,9 +92,9 @@ document.addEventListener("DOMContentLoaded", ()=>{
 					</c:forEach>
 
 				</div>
-				<div
-					class="w_2">
+				<div class="w_2">
 
+					<div>${LOCATION.ar_si}&nbsp;${LOCATION.ar_gu}&nbsp;${LOCATION.ar_dong}</div>
 					<c:forEach
 						items="${TODAY}"
 						var="TD">
@@ -142,7 +129,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 							<c:forEach
 								items="${TODAY}"
 								var="TD">
-								<c:if test="${TD.fcstTime == TIME && TD.category == '3시간 기온'}">
+								<c:if test="${TD.fcstTime == TIME && TD.category == '습도'}">
 									<div>${TD.fcstValue}</div>
 								</c:if>
 							</c:forEach>
@@ -180,36 +167,33 @@ document.addEventListener("DOMContentLoaded", ()=>{
 						</c:forEach>
 					</div>
 				</div>
+
 				<div class="w_4">
+					<div class="w_4_a">오늘<br>날씨</div>
 					<c:forEach
 						items="${TODAY}"
 						var="TD">
 						<c:if test="${TD.category == '3시간 기온'}">
 							<div class="w_4_a">
-								<div>${TD.fcstTime}</div>
 								<div>${TD.fcstValue}</div>
+								<div>${TD.fcstTime}</div>
 							</div>
 						</c:if>
-
 					</c:forEach>
 				</div>
 
-
-
-
 				<div class="w_5">
+					<div class="w_5_a">내일<br>날씨</div>
 					<c:forEach
 						items="${TOMORROW}"
 						var="TM">
 						<c:if test="${TM.category == '3시간 기온'}">
 							<div class="w_5_a">
-								<div>${TM.fcstTime}</div>
 								<div>${TM.fcstValue}</div>
+								<div>${TM.fcstTime}</div>
 							</div>
 						</c:if>
-
 					</c:forEach>
-
 				</div>
 
 
@@ -237,16 +221,4 @@ document.addEventListener("DOMContentLoaded", ()=>{
 		</div>
 	</div>
 </body>
-<script>
-	/*
-	 let logout = document.querySelector("button.logout")
-	 let mypage = document.querySelector("button.mypage")
-
-	 if(logout){
-	 logout.addEventListener("click", (e) =>{
-	 location.href = "${rootPath}"
-	 })
-	 }
-	 */
-</script>
 </html>

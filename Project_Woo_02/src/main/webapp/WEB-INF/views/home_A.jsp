@@ -18,47 +18,29 @@
 document.addEventListener("DOMContentLoaded", ()=>{
 	document.querySelector("div.log_join").addEventListener("click", (e)=> {
 		let tagName = e.target.tagName;
-		//alert(tagName)
 		
 		if(tagName === "BUTTON") {
 			let menuText = e.target.textContent;
-			if (menuText === "login") {
-				document.location.href="$redirect:/";
-			} else if (menuText === "Join") {
-				document.location.href="${rootPath}/join"
-			}  else if (menuText === "logout") {
+			 if (menuText === "Logout") {
 				document.location.href="${rootPath}/logout"
-			} else if(menuText ==="MyPage"){
-				alert("${MEMVO.us_id}")
+			} else if(menuText ==="Mypage"){
 				location.href="${rootPath}/mypage?us_id=" + "${MEMVO.us_id}"
 			}
 		}
 	})
-
-	/*
-	document.querySelector("li#li_log").addEventListener("click",(e)=>{
-		document.location.href="${rootPath}/login"
-	})
-	document.querySelector("li#li_join").addEventListener("click",(e)=>{
-		document.location.href="${rootPath}/join"
-	})
-	document.querySelector("li#li_logout").addEventListener("click",(e)=>{
-		document.location.href="${rootPath}/logout"
-	})
-	*/
 })
 </script>
 </head>
 <link
-	href="${rootPath}/static/css/home_A.css?ver=2021-07-16-002"
+	href="${rootPath}/static/css/home_A.css?ver=2021-07-19-001"
 	rel="stylesheet" />
 <body>
 	<div>
 		<div class="container">
 			<div class="item-1">
 				<div class="log_join">
-					<button class="logout">logout</button>
-					<button class="mypage">MyPage</button>
+					<button class="logout">Logout</button>
+					<button class="mypage">Mypage</button>
 				</div>
 				<div class="header">
 					<h1 style="font-size: 90px; text-align: center">W O O</h1>
@@ -73,6 +55,18 @@ document.addEventListener("DOMContentLoaded", ()=>{
 						var="TD">
 
 						<c:choose>
+							<c:when
+								test="${TD.category == '강수확률' && TD.fcstTime == TIME && TD.fcstValue == '100%'}">
+								<div>
+									<img src="${rootPath}/static/images/비.png">
+								</div>
+							</c:when>
+							<c:when
+								test="${TD.category == '6시간 적설량' && TD.fcstTime == TIME && TD.fcstValue != '없음'}">
+								<div>
+									<img src="${rootPath}/static/images/눈.png">
+								</div>
+							</c:when>
 							<c:when
 								test="${TD.category == '하늘상태' && TD.fcstValue =='맑음' && TD.fcstTime == TIME}">
 								<div>
@@ -105,6 +99,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 				</div>
 				<div class="w_2">
 
+					<div>${LOCATION.ar_si}&nbsp;${LOCATION.ar_gu}&nbsp;${LOCATION.ar_dong}</div>
 					<c:forEach
 						items="${TODAY}"
 						var="TD">
@@ -139,7 +134,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 							<c:forEach
 								items="${TODAY}"
 								var="TD">
-								<c:if test="${TD.fcstTime == TIME && TD.category == '3시간 기온'}">
+								<c:if test="${TD.fcstTime == TIME && TD.category == '습도'}">
 									<div>${TD.fcstValue}</div>
 								</c:if>
 							</c:forEach>
@@ -177,35 +172,33 @@ document.addEventListener("DOMContentLoaded", ()=>{
 						</c:forEach>
 					</div>
 				</div>
+
 				<div class="w_4">
+					<div class="w_4_a">오늘<br>날씨</div>
 					<c:forEach
 						items="${TODAY}"
 						var="TD">
 						<c:if test="${TD.category == '3시간 기온'}">
 							<div class="w_4_a">
-								<div>${TD.fcstTime}</div>
 								<div>${TD.fcstValue}</div>
+								<div>${TD.fcstTime}</div>
 							</div>
-						</c:if>
-						<c:if test="${TD.category == '강수확률'}">
-							<div>${TD.fcstValue}</div>
 						</c:if>
 					</c:forEach>
 				</div>
+
 				<div class="w_5">
+					<div class="w_5_a">내일<br>날씨</div>
 					<c:forEach
 						items="${TOMORROW}"
 						var="TM">
 						<c:if test="${TM.category == '3시간 기온'}">
+							<div class="w_5_a">
+								<div>${TM.fcstValue}</div>
 								<div>${TM.fcstTime}</div>
-								<div>${TM.fcstValue}</div>
-							<c:if test="${TM.category == '강수확률'}">
-								<div>${TM.fcstValue}</div>
-							</c:if>
+							</div>
 						</c:if>
-
 					</c:forEach>
-
 				</div>
 			</div>
 			<div class="item-3">
@@ -221,36 +214,17 @@ document.addEventListener("DOMContentLoaded", ()=>{
 					</div>
 					<figcaption class="o">
 						<div class="w_data_o">
-							<div class="w_data_div_o">
-								<img src="${rootPath}/static/images/formal-shirt.png" />
-							</div>
-							<div class="w_data_div_o">
-								<img src="${rootPath}/static/images/male-clothes.png" />
-							</div>
-							<div class="w_data_div_o">
-								<img src="${rootPath}/static/images/polo-shirt.png" />
-							</div>
-							<div class="w_data_div_o">
-								<img src="${rootPath}/static/images/polo-shirt.png" />
-							</div>
-							<div class="w_data_div_o">
-								<img src="${rootPath}/static/images/polo-shirt.png" />
-							</div>
-							<div class="w_data_div_o">
-								<img src="${rootPath}/static/images/polo-shirt.png" />
-							</div>
-							<div class="w_data_div_o">
-								<img src="${rootPath}/static/images/polo-shirt.png" />
-							</div>
-							<div class="w_data_div_o">
-								<img src="${rootPath}/static/images/polo-shirt.png" />
-							</div>
-							<div class="w_data_div_o">
-								<img src="${rootPath}/static/images/polo-shirt.png" />
-							</div>
-							<div class="w_data_div_o">
-								<img src="${rootPath}/static/images/polo-shirt.png" />
-							</div>
+							<c:choose>
+								<c:when test="${SEASON == '봄'}">
+									<%@ include file="/WEB-INF/views/spring.jspf"%>
+								</c:when>
+								<c:when test="${SEASON == '여름'}">
+									<%@ include file="/WEB-INF/views/summer.jspf"%>
+								</c:when>
+								<c:otherwise>
+									<%@ include file="/WEB-INF/views/winter.jspf"%>
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</figcaption>
 				</figure>

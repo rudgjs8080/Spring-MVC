@@ -13,9 +13,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>W O O</title>
 <script>
-
 document.addEventListener("DOMContentLoaded", ()=>{
 	document.querySelector("nav#main_mem").addEventListener("click", (e)=> {
 		let tagName = e.target.tagName;
@@ -30,20 +29,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
 			} 
 		}
 	})
-	
-	/*
-	document.querySelector("li#li_log").addEventListener("click",(e)=>{
-		document.location.href="${rootPath}/login"
-	})
-	document.querySelector("li#li_join").addEventListener("click",(e)=>{
-		document.location.href="${rootPath}/join"
-	})
-	document.querySelector("li#li_logout").addEventListener("click",(e)=>{
-		document.location.href="${rootPath}/logout"
-	})
-	
-	*/
-	
 })
 </script>
 </head>
@@ -56,24 +41,12 @@ document.addEventListener("DOMContentLoaded", ()=>{
 		<ul>
 
 			<c:if test="${not empty MEMVO}">
-
-			<!-- 	<li id="li_logout">로그아웃</li>
-				<li id="li_mypage">${MEMVO.us_name}</li> -->
-
 				<%@ include file="/WEB-INF/views/home_A.jsp"%>
 			</c:if>
 			<c:if test="${empty MEMVO}">
-
-				<!-- <li id="li_log">로그인</li>
-				<li id="li_join">회원가입</li> -->
 				<%@ include file="/WEB-INF/views/home_B.jsp"%>
 			</c:if>
-
-
-
 		</ul>
 	</nav>
-
-
 </body>
 </html>

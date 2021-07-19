@@ -20,6 +20,7 @@ import com.callor.woo.model.WeatherDTO;
 import com.callor.woo.model.WeatherVO;
 import com.callor.woo.service.DaySelectService;
 import com.callor.woo.service.NaverService;
+import com.callor.woo.service.SeasonService;
 import com.callor.woo.service.TimeService;
 import com.callor.woo.service.WeatherService;
 import com.google.protobuf.TextFormat.ParseException;
@@ -41,9 +42,12 @@ public class APIController {
 
 	@Qualifier("dayService")
 	protected final DaySelectService dService;
-	
+
 	@Qualifier("timeService")
 	protected final TimeService tService;
+
+	@Qualifier("seasonService")
+	protected final SeasonService sService;
 
 	@RequestMapping(value = { "/", "" }, method = RequestMethod.GET)
 	public String home(@RequestParam("lat") String latitude, @RequestParam("lng") String longitude, Model model)
@@ -61,12 +65,14 @@ public class APIController {
 		for (int i = 1; i < 4; i++) {
 			addr += addrList.get(i).getName();
 		}
-		
+
 		log.debug("String addr {}", addr.trim());
 
 		List<AddrVO> location = nService.findByAddr(addr);
+		AddrVO locationVO = location.get(0);
+		//String locations = locationVO.getAr_addr();
 
-		log.debug("location {}", location);
+		//log.debug("location {}", locations);
 
 		Date date = new Date();
 
@@ -94,16 +100,18 @@ public class APIController {
 
 		//		log.debug("날씨전체 맵 {}", weather.toString());
 		//		log.debug("오늘날씨 {}",today.toString());
-				log.debug("내일날씨 {}",tomorrow.toString());
+		log.debug("내일날씨 {}", tomorrow.toString());
 		//		log.debug("2일뒤날씨 {}",afterTomorrow.toString());
 
 		String time = tService.time();
-		
-		model.addAttribute("LOCATION",location);
+		String season = sService.selectSeason(today);
+
+		model.addAttribute("SEASON", season);
+		model.addAttribute("LOCATION", locationVO);
 		model.addAttribute("TIME", time);
 		model.addAttribute("TODAY", today);
 		model.addAttribute("TOMORROW", tomorrow);
 		model.addAttribute("AFTERTOMORROW", afterTomorrow);
-		return "home1";
+		return "home_main";
 	}
 }
