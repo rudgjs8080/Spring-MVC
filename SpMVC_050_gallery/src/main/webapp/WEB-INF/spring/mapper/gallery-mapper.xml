@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.callor.gallery.persistance.ext.GalleryDao">
+
+	<select id="countAll" resultType="Integer">
+		select count(*) from
+		tbl_gallery
+	</select>
+
+	<select id="selectAll" resultType="GalleryDTO">
+		select * from tbl_gallery
+		order by g_date desc, g_time desc
+	</select>
+
+	<select id="findById" resultType="GalleryDTO">
+		SELECT * FROM tbl_gallery
+		WHERE g_seq = #{g_seq}
+	</select>
+
+	<!-- 매개변수로 칼럼명과 검색어를 전달받아서 조건검색하기 -->
+	<!-- -->
+	<select id="findBySearch" resultType="GalleryDTO">
+		select * from tbl_gallery
+		<if test="text != null and text != 'NONE'">
+			<if test="column == 'g_subject' ">
+				where g_subject like concat('%', #{text}, '%')
+			</if>
+			<if test="column == 'g_writer' ">
+				where g_writer like concat('%', #{text}, '%')
+			</if>
+			<if test="column == 'g_content' ">
+				where g_content like concat('%', #{text}, '%')
+			</if>
+		</if>
+	</select>
+	<!-- select 된 결과를 DTO와 매칭하는 중간단계 row mapper id : table을 select 했을 때 PK지정된 
+		값을 property : DTO변수이름, column : select 된 칼럼이름, as된 칼럼 이름 result : PK가 아닌 
+		칼럼들 property : DTO변수이름, column : select 된 칼럼이름, as된 칼럼 이름 -->
+	<resultMap type="GalleryDTO" id="GalleryDTOResultMap">
+		<id property="g_seq" column="g_seq" />
+		<result column="g_writer" property="g_writer" />
+		<result column="g_date" property="g_date" />
+		<result column="g_time" property="g_time" />
+		<result column="g_content" property="g_content" />
+		<result column="g_image" property="g_image" />
+		<collection property="fileList" ofType="FileDTO">
+			<id property="file_seq" column="f_seq" />
+			<result property="file_original" column="f_original" />
+			<result property="file_upname" column="f_upname" />
+		</collection>
+	</resultMap>
+
+	<sql id="selectGalleryAndFiles">
+		select
+		G.g_seq as g_seq,
+		G.g_writer as g_writer,
+		G.g_date as
+		g_date,
+		G.g_time as
+		g_time,
+		G.g_subject as g_subject,
+		G.g_content as
+		g_content,
+		G.g_image as
+		g_image,
+
+		F.file_seq as f_seq,
+		F.file_original as
+		f_original,
+		F.file_upname as f_upname
+		from
+		tbl_gallery G
+		left join
+		tbl_files F
+		on G.g_seq = F.file_gseq
+		where G.g_seq = #{g_seq}
+	</sql>
+
+
+	<select id="findByIdGalleryFilesResultMap"
+		resultMap="GalleryDTOResultMap">
+		<include refid="selectGalleryAndFiles">
+			<property name="g_seq" value="#{g_seq}" />
+		</include>
+	</select>
+
+
+	<select id="findByIdGalleryFiles" resultType="GalleryFilesDTO">
+		<include refid="selectGalleryAndFiles">
+			<property name="g_seq" value="#{g_seq}" />
+		</include>
+	</select>
+
+
+	<!-- insert, update tag에서는 selectKey라는 내부 tag를 사용할 수 있다 insert, update가 
+		실행되기 전, 후에 다른 SQL문을 실행하고자 할 때 insert를 수행한 후 (order="AFTER")에 last-insert_id() 
+		함수를 실행하여 GalleryDTO의 g_seq 칼럼에 담아달라 -->
+	<insert id="insert" parameterType="GalleryDTO">
+		insert into tbl_gallery (g_writer, g_date, g_time, g_subject,
+		g_content, g_image)
+		values (#{g_writer}, #{g_date}, #{g_time},
+		#{g_subject}, #{g_content}, #{g_image})
+		<selectKey keyProperty="g_seq" order="AFTER"
+			resultType="Long">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+	<update id="update"></update>
+	<delete id="delete">
+
+		DELETE FROM tbl_gallery
+		WHERE g_seq = #{g_seq}
+
+	</delete>
+
+	<!-- 현재 프로젝트에서 프로젝트를 Run하면 자동으로 table을 검사하여 table이 없으면 새로 생성하도록 작성 DDL 명령(create, 
+		drop, alter)을 수행하면 Transaction이 완전히 무시된다 Transaction 한가지의 일련의 작업(JOB)이 진행되는 
+		과정에서 다수의(2개 이상의) Table에 대하여 SQL(DML, create:insert, update, delete)문이 실행되고 
+		Table에 저장된 데이터의 변화가 생길 때 Job이 모두 정상적으로 수행되었을 때는 commit을 하여 데이터 변화를 완성하고 중간에 
+		사소한 exception이라도 발생하면 모든 작업을 rollback 하여 데이터베이스에 무결성을 보장하는 한가지의 규칙이며 코드 작성 
+		원칙 Transaction이 진행되는 도중에 다른 task에서 DDL이 실행되거나, TCL(commit, rollback)이 실행되면 
+		현재 task에서 실행되는 Transaction이 무력화 되는 현상이 발생한다 mybatis에서는 공식적으로 mapper와 dao를 
+		활용하여 DDL 명령을 사용하는 것을 밝히지 않는다 -->
+	<update id="create_table">
+		create table if not exists tbl_gallery(
+		g_seq BIGINT
+		auto_increment primary key,
+		g_writer VARCHAR(125) not null ,
+		g_date
+		VARCHAR(10) not null ,
+		g_time VARCHAR(10) not null ,
+		g_subject
+		VARCHAR(50) not null,
+		g_content VARCHAR(1000) not null ,
+		g_image
+		VARCHAR(256)
+		)
+	</update>
+
+</mapper> 

@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+	margin:0;
+	padding: 0;
+}
+
+header{
+	background-color: #cc9900;
+	color: white;
+	text-shadow: 2px 2px 2px black;
+	text-align: center;
+	padding: 2rem;
+	}
+.main_title{
+	font-size: 50px;
+}
+.main_table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 90%;
+	margin: 20px auto;
+	text-align: center;
+}
+.main_table td{
+	border-bottom: 1px solid gray;
+}
+.main_tr{
+	background-color: #ccc;
+	font-weight: bold;	
+}
+
+.main_tr:hover{
+	cursor: pointer;
+	background-color: #aaa;
+}
+
+.list_tr:hover{
+	cursor: pointer;
+	background-color: #ffcc99;
+}

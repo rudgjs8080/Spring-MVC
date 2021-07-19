@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.team.weather.dao.MemberDao">
+	<!-- 회원목록 -->
+	<select id="selectAll" resultType="MemberVO">
+		SELECT *FROM tbl_user
+	</select>
+	<!-- 회원찾기 -->
+	<select id="findById" resultType="MemberVO">
+		SELECT * FROM tbl_user WHERE us_id = #{us_id}
+	</select>
+	<!-- 로그인 -->
+	<select id="login" resultType="MemberVO">
+		SELECT * FROM tbl_user WHERE us_id = #{us_id} AND us_pw = #{us_pw}
+	</select>
+	<!-- 회원가입 -->
+	<insert id="insert" parameterType="MemberVO"> 
+		INSERT INTO tbl_user(us_name,us_id,us_pw,us_city,us_dist)
+		VALUES (#{us_name},#{us_id},#{us_pw},#{us_city},#{us_dist})
+	</insert>
+	<!-- 회원정보 수정 -->
+	<update id="update" parameterType="MemberVO">
+		UPDATE tbl_user SET
+		us_name = #{us_name}
+		us_pw = #{us_pw}
+		us_sex = #{us_sex}
+		us_city = #{us_city}
+		us_dist = #{us_dist}
+		WHERE us_id = #{us_id}
+	</update>
+	<!-- 회월탈퇴 -->
+	<delete id="">
+		DELETE FROM tbl_user WHERE us_id = #{us_id}
+	</delete>
+	
+	
+
+</mapper>

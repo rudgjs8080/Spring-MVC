@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.callor.gallery.persistance.ext.MemberDao">
+
+	<select id="selectAll" resultType="MemberVO">
+		select * from tbl_member
+	</select>
+	<select id="findById" resultType="MemberVO">
+		select * from tbl_member
+		where m_userid = #{m_userid}
+	</select>
+	<insert id="insert" parameterType="MemberVO">
+
+	</insert>
+
+	<insert id="insertOrUpdate" parameterType="MemberVO">
+		insert into	tbl_member
+		(m_userid, m_password, m_nick, m_tel, m_level)
+		
+		values(#{m_userid}, #{m_password},
+		#{m_nick}, #{m_tel}, #{m_level})
+		
+		on duplicate key update
+		m_userid = m_userid,
+		m_password = m_password,
+		m_nick = m_nick,
+		m_tel = m_tel,
+		m_level = m_level
+	</insert>
+
+
+	<!-- List<DTO>에 담긴 데이터를 한꺼번에 insert -->
+	<insert id="insertWithList" parameterType="MemberVO">
+
+	</insert>
+
+	<!-- List<DTO>에 담긴 데이터를 insert or update 수행하기 -->
+	<insert id="insertOrUpdateWithList" parameterType="MemberVO">
+	</insert>
+
+
+	<update id="update"></update>
+	<delete id="delete"></delete>
+	<update id="create_table">
+		create table if not exists tbl_member(
+		m_userid
+		varchar(125) primary key,
+		m_password varchar(255) not null,
+		m_nick
+		varchar(50) not null,
+		m_tel
+		varchar(50),
+		m_level int default 9
+
+		)
+
+
+	</update>
+</mapper> 

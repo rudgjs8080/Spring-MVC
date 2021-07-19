@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.callor.gallery.persistance.ext.FileDao">
+
+	<select id="selectAll"></select>
+	<select id="findById">
+		SELECT * FROM tbl_files
+ 		WHERE file_seq = #{f_seq}
+	</select>
+	
+	<insert id="insert" parameterType="FileDTO">
+		insert into tbl_files(
+		file_gseq,
+		file_original,
+		file_upname
+
+		) values(
+		#{file_gseq},
+		#{file_original},
+		#{file_upname})
+	</insert>
+
+	<!-- f_seq 값이 있는 데이터(이미 저장된 데이터) 추가하려고 할 때 pk 값이 중복되어 내부에서 UNIQUE Exception이 
+		발생하는데 이 Exception이 catch하여 Update로 전환하는 MySQL 고유 SQL 명령을 사용하여 insert or update를 
+		수행하는 방법 이 문법을 사용하기 위하여 file_seq 데이터를 insert하도록 선생 코드가 필요하다 -->
+	<insert id="insertOrUpdate" parameterType="FileDTO">
+		insert into tbl_files(
+		file_seq
+		file_gseq,
+		file_original,
+		file_upname
+
+		) values(
+		#{file_seq},
+		#{file_gseq},
+		#{file_original},
+		#{file_upname})
+
+		on duplicate key update
+		file_gseq = #{file_seq},
+		file_original =
+		#{file_original},
+		file_upname =
+		#{file_upname}
+	</insert>
+
+
+	<!-- List<DTO>에 담긴 데이터를 한꺼번에 insert -->
+	<insert id="insertWithList" parameterType="FileDTO">
+		insert into tbl_files(
+		file_gseq,
+		file_original,
+		file_upname
+
+		) values
+		<foreach collection="fileList" item="file" separator=", ">
+			(#{file.file_gseq},
+			#{file.file_original},
+			#{file.file_upname})
+		</foreach>
+
+	</insert>
+
+	<!-- List<DTO>에 담긴 데이터를 insert or update 수행하기 -->
+	<insert id="insertOrUpdateWithList" parameterType="FileDTO">
+		insert into tbl_files(
+		file_gseq,
+		file_original,
+		file_upname
+
+		) values
+		<foreach collection="fileList" item="file" separator=", ">
+			(#{file.file_gseq},
+			#{file.file_original},
+			#{file.file_upname})
+		</foreach>
+		as new(f_gseq, f_original, f_upname)
+		on duplicate key update
+		file_gseq =
+		f_gseq, file_original = f_original, file_upname =
+		f_upname
+	</insert>
+
+
+	<update id="update"></update>
+	<delete id="delete">
+		DELETE FROM tbl_files
+		WHERE file_seq = #{file_seq}
+	</delete>
+	<update id="create_table">
+		CREATE TABLE IF NOT EXISTS tbl_files (
+		file_seq BIGINT AUTO_INCREMENT PRIMARY KEY,
+		file_gseq BIGINT NOT NULL,
+		file_original VARCHAR(256) NOT NULL,
+		file_upname VARCHAR(256) NOT NULL,
+		CONSTRAINT FOREIGN KEY (file_gseq)
+		REFERENCES tbl_gallery(g_seq)
+		ON DELETE CASCADE
+		)
+	</update>
+</mapper> 

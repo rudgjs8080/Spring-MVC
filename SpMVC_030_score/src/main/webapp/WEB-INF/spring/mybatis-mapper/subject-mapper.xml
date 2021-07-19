@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- select 명령문을 실행핳는데 selectAll을 실행하면 studentVO를 가져와 데이터를 만들어 달라? -->
+<!-- insert : 만약 누군가 Dao에 있는 insert를 호출하면서 매개변수로 StudentVO로 보내면 값을 세팅해서 sql 
+	명령문을 만들어라 -->
+<mapper namespace="com.callor.score.dao.ext.SubjectDao">
+	<select id="selectAll" resultType="SubjectVO">
+		SELECT * FROM tbl_subject
+	</select>
+	<select id="findByName" resultType="SubjectVO">
+		SELECT * FROM tbl_subject where
+		sb_name = #{sb_name}
+	</select>
+	<insert id="insert" parameterType="SubjectVO">
+		insert into
+		tbl_subject(sb_code, sb_name, sb_prof) 
+		values(#{sb_code},#{sb_name},#{sb_prof})
+	</insert>
+	<update id="update" parameterType="SubjectVO">
+		update tbl_subject set
+		sb_code = #{sb_code},
+		sb_name = #{sb_name},
+		sb_prof = #{sb_prof}
+		where sb_code = #{sb_code}
+
+	</update>
+	<delete id="delete">
+		DELETE FROM tbl_subject where sb_code = #{sb_code}
+	</delete>
+</mapper>

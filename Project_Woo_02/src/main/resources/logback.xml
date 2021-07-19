@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>
+				%logger{10} %n@20.20LEVETL] %m%n
+			</pattern>
+		</encoder>
+	</appender>
+	<logger name="com.callor.woo" additivity="false">
+		<appender-ref ref="STDOUT"/>
+		<level level="DEBUG"/>
+	</logger>
+	
+	<logger name="org.springframework.transaction" additivity="false">
+		<appender-ref ref="STDOUT"/>
+		<level level="TRACE"/>
+	</logger>
+	
+	<logger name="org.springframework.jdbc" additivity="false">
+		<appender-ref ref="STDOUT"/>
+		<level level="TRACE"/>
+	</logger>
+	
+	<!-- 특별히 조건이 부여되지 않은 경우에 logger를 표시하기 -->
+	<root additivity="false"> <!-- additivity="false" 같은 메시지를 반복하지 않게하기위한 조건 -->
+		<appender-ref ref="STDOUT"/>
+		<level value="INFO"/>
+	</root>
+</configuration>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- select 명령문을 실행핳는데 selectAll을 실행하면 studentVO를 가져와 데이터를 만들어 달라? -->
+<!-- insert : 만약 누군가 Dao에 있는 insert를 호출하면서 매개변수로 StudentVO로 보내면 값을 세팅해서 sql 
+	명령문을 만들어라 -->
+<mapper namespace="com.callor.score.dao.ext.ScoreDao">
+	<select id="scoreCount" resultType="Integer">
+		select count(*) from tbl_score
+		where sc_stnum = #{sc_stnum}
+		
+	</select>
+	<select id="scoreSum" resultType="Integer">
+		select sum(sc_score) from tbl_score
+		where sc_stnum = #{sc_stnum}
+			
+	</select>
+	<select id="selectAll" resultType="ScoreVO">
+		SELECT * FROM tbl_score
+	</select>
+	<select id="findById" resultType="ScoreVO">
+		SELECT * FROM tbl_score where
+		sc_stnum = #{sc_stnum}
+	</select>
+	<select id="selectViewAll" resultType="ScoreDTO">
+		SELECT sc_seq, sc_stnum,
+		ST.st_name sc_stname, sc_sbcode, SB.sb_name sc_sbname, sc_score
+		from tbl_score SC
+		left join tbl_student ST
+		on SC.sc_stnum = ST.st_num
+		left join tbl_subject SB
+		on SC.sc_sbcode = SB.sb_code
+		order by sc_stnum, sc_sbcode
+	</select>
+	<select id="selectSubjectAndScore" resultType="SubjectAndScoreDTO">
+		select 
+				SB.sb_code as ss_code,
+		 		SB.sb_name as ss_stname, 
+		 		SB.sb_prof as ss_prof,
+				SC.sc_stnum as ss_stnum, 
+				SC.sc_score as ss_score
+		from tbl_subject SB
+		left join tbl_score SC
+		on SC.sc_sbcode = SB.sb_code
+		and SC.sc_stnum = #{st_num} limit 5
+	</select>
+	<insert id="insert" parameterType="ScoreVO">
+		insert into
+		tbl_score(sc_stname, sc_sbcode,
+		sc_score)
+		values(#{sc_stnum},#{sc_sbcode},#{sc_score})
+	</insert>
+	
+	<!-- 
+	데이터를 INSERT를 먼저 수행해라
+	만약 데이터가 있으면 UPDATE를 수행해라 
+	
+	PK로 설정된 칼럼에 값을 세팅한 후 INSERT를 수행
+	sc_seq = 3 와 같은 방법으로 세팅을 하여 INSERT 수행
+	만약 table의 sc_seq 칼럼에 이미 3이라는 값이 있으면
+	UNIQUE 오류가 발생할 것이다
+	내부적으로 DBMS(mysql)에서 exception이 발생할 것이다
+	
+	mysql INSERT문에 다음 명령절이 있으면
+	ON DUPLICATE KEY UPDATE
+	
+	INSERT를 수행할 때 Exception을 발생하는 대신
+	PK를 기준으로 Update를 수행하는 절차가 실행된다
+	
+	Tip
+	PK를 기존의 칼럼지정으로 유지하면서
+	DUPLICATE .. UPDATE를 사용하기 위하여 
+	INSERT에 필요한 칼럼중
+	학번과 과목코드를 묶어서 UNIQUE로 설정했다
+	
+	그랬더니 
+	이미 값이 저장되어 있는 학번과, 과목코드와
+	동일한 값을 INSERT하려고 하면
+	Exception이 발생하고
+	자동으로 DUPLICATE .. UPDATE가 실행되더라
+	
+	ON DUPLICATE KEY UPDATE를 사용하여
+	insert Or update를 수행하기
+	어떤 데이터를 추가하는데
+	이미 같은 PK를 갖는 데이터가 있으면
+	update를 하고 없으면 추가하라 
+	
+	조건
+	insert를 할 때 반드시 pk값이 value에 있어야 한다
+	
+	변경하여 
+	insert를 할 때 포함되는 칼럼들을 unique로 설정하면
+	같은 효과를 낼 수 있다
+	 -->
+	
+	<insert id="insertOrUpdate">
+		INSERT INTO tbl_score(sc_stnum, sc_sbcode, sc_score)
+		VALUES(#{st_num},#{sc_sbcode}, #{sc_score})
+		ON DUPLICATE KEY UPDATE 
+		sc_score = #{sc_score}
+	</insert>
+	
+	<!-- 
+	List에 담긴 데이터를 받아서
+	Bulk insert 수행하기
+	 -->
+	<insert id="insertorUpdateForList">
+		insert into tbl_score(sc_stnum, sc_sbcode, sc_score)
+		values
+		<foreach collection="scoreMaps" item="map" separator=", ">
+			(#{st_num},#{map.subject},#{map.score})
+		</foreach>
+		as new(st_num,subject,score)
+		on duplicate key update
+		sc_score = score
+	</insert>
+	
+	<update id="update" parameterType="ScoreVO">
+		UPDATE tbl_score SET
+			sc_stnum = #{sc_stnum},
+			sc_sbcode = #{sc_sbcode },
+			sc_score= #{sc_score},
+		WHERE sc_seq = #{sc_num}
+	</update>
+	<delete id="delete">
+		DELETE FROM tbl_score where sc_stnum = #{sc_stnum}
+	</delete>
+</mapper>

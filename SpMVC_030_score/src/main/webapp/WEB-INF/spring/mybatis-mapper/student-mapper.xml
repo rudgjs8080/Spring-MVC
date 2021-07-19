@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- select 명령문을 실행핳는데 selectAll을 실행하면 studentVO를 가져와 데이터를 만들어 달라? -->
+<!-- insert : 만약 누군가 Dao에 있는 insert를 호출하면서 매개변수로 StudentVO로 보내면 값을 세팅해서 sql 
+	명령문을 만들어라 -->
+<mapper namespace="com.callor.score.dao.ext.StudentDao">
+	<select id="selectAll" resultType="StudentVO">
+		SELECT * FROM tbl_student 
+		ORDER BY st_num
+		
+	</select>
+	<select id="findById" resultType="StudentVO">
+		SELECT * FROM tbl_student where
+		st_num = #{st_num}
+	</select>
+	<!-- mapper의 각 기능의 id값은 Dao에 설정된 method 이름으로 설정
+			Dao의 method가 id로 사용되는 까닭에
+			Mybatis에서는 Dao의 method를 중복 정의 할 수 없다(id를 설정해서) -->
+	<select id="getMaxStNum" resultType="String">
+		SELECT max(st_num) as st_num from tbl_student
+	</select>
+	<insert id="insert" parameterType="StudentVO">insert into
+		tbl_student(st_num, st_name, st_dept,
+		st_grade, st_tel, st_addr)
+		values(#{st_num},#{st_name},#{st_dept},#{st_grade},#{st_tel},#{st_addr})
+	</insert>
+	<update id="update" parameterType="StudentVO">
+		update tbl_student set
+		st_num = #{st_num},
+		st_name = #{st_name},
+		st_dept = #{st_dept},
+		st_grade = #{st_grade},
+		st_tel = #{st_tel},
+		st_addr = #{st_addr}
+		where st_num =#{st_num}
+
+	</update>
+	<delete id="delete">
+		DELETE FROM tbl_student where st_num = #{st_num}
+	</delete>
+</mapper>
