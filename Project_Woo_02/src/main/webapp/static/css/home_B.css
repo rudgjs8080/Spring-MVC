@@ -31,22 +31,8 @@
 	margin: 0 auto;
 	display: grid;
 	grid-template-columns: 1fr;
-	grid-template-rows: 1fr 3fr 3fr;
+	grid-template-rows: 1fr 4fr 4fr;
 	grid-gap: 30px;
-
-	/*
-    화면의 전체적인 틀은 grid 를 이용하여 틀을 잡고
-    grid 안에 있는 item 들의 내부는 flex를 이용하여
-    구성할 예정
-    */
-	/*
-    최대 크기 1240은 그냥 유지 그것보다 작아지면
-    너비의 90%를 사용하겠다라는 의미 
-    columns : 한 줄 씩 사용해라 
-    rows auto : 안에 있는 콘텐츠 만큼 자동으로 나와라
-    
-    절반 화면 기준
-    */
 }
 
 .item-1 {
@@ -134,9 +120,7 @@ button.lg, button.jo {
 	margin-l1ft: 5%;
 	width: 35%
 }
-.w_5 {
-	margin-top: 5px;
-}
+
 .w_4, .w_5 {
 	grid-column: 1/4;
 	display: flex;
@@ -147,7 +131,9 @@ button.lg, button.jo {
 	border: 0px solid transition;
 	border-radius: 20px;
 }
-
+.w_5 {
+	margin-top: 5px;
+}
 .w_4_a, .w_5_a {
 	justify-content: space-around;
 	flex: 1;
@@ -175,19 +161,13 @@ button.lg, button.jo {
 	grid-template-rows: auto;
 	justify-content: center;
 }
-
-.o_1 {
-	margin: 3%;
-}
-
-.o_1 img {
-	width: 100%;
-	height: 100%;
+.item-3  p{
+	margin: 10px;
+	font-size: 20px;
 }
 
 figure.clip_h {
 	position: relative;
-	overflow: hidden;
 	width: 100%;
 	height: 100%;
 	text-align: center;
@@ -195,7 +175,7 @@ figure.clip_h {
 }
 
 figure.clip_h:hover {
-	transition: 1s;
+	transition: 0.45s;
 }
 
 figure.clip_h * {
@@ -217,21 +197,6 @@ figure.clip_h figcaption.o {
 	bottom: 5%;
 }
 
-figure.clip_h h1 {
-	display: table;
-	margin: 0 auto;
-	padding: 0 10px;
-	position: relative;
-	text-align: center;
-	width: auto;
-	text-transform: uppercase;
-	font-weight: 400;
-}
-
-figure.clip_h h1 span {
-	font-weight: 800;
-}
-
 div.w_data_o {
 	position: relative;
 	opacity: 0;
@@ -247,15 +212,11 @@ div.w_data_o_text {
 	font-size: 140%;
 }
 
-figure.clip_h:hover img.clothes, figure.clip_h:hover p {
+figure.clip_h:hover img, figure.clip_h:hover p {
 	opacity: 0;
 }
 
-figure.clip_h:hover .p3 {
-	opacity: 1;
-}
-
-figure.clip_h:hover div.w_data, figure.clip_h:hover div.w_data_o {
+figure.clip_h:hover, figure.clip_h:hover div.w_data_o {
 	opacity: 1;
 	-webkit-transition-delay: 0.45s;
 	transition-delay: 0.45s;

@@ -35,7 +35,7 @@ h1, h4 {
 	margin: 0 auto;
 	display: grid;
 	grid-template-columns: 1fr;
-	grid-template-rows: 1fr 3fr 3fr;
+	grid-template-rows: 1fr 4fr 4fr;
 	grid-gap: 30px;
 
 	/*
@@ -142,6 +142,10 @@ button.logout, button.mypage {
 	display: flex;
 	text-align: center;
 	overflow: auto;
+	background-color: white;
+	opacity: 1;
+	border: 0px solid transition;
+	border-radius: 20px;
 }
 
 .w_5 {
@@ -152,7 +156,7 @@ button.logout, button.mypage {
 	justify-content: space-around;
 	flex: 1;
 	display: flex;
-	flex-direction: column;z
+	flex-direction: column;
 	margin: 0.8%;
 	border: 1px solid white;
 	box-shadow: 0 0 10px gray;
@@ -175,16 +179,10 @@ button.logout, button.mypage {
 	grid-template-columns: 1fr;
 	grid-template-rows: auto;
 }
-
-.o_1 {
-	margin: 3%;
+.item-3  p{
+	margin: 10px;
+	font-size: 20px;
 }
-
-.o_1 img {
-	width: 100%;
-	height: 100%;
-}
-
 figure.clip_h {
 	position: relative;
 	overflow: hidden;
@@ -217,28 +215,12 @@ figure.clip_h figcaption.o {
 	bottom: 5%;
 }
 
-figure.clip_h h1 {
-	display: table;
-	margin: 0 auto;
-	padding: 0 10px;
-	position: relative;
-	text-align: center;
-	width: auto;
-	text-transform: uppercase;
-	font-weight: 400;
-}
-
-figure.clip_h h1 span {
-	font-weight: 800;
-}
-
 div.w_data_o {
 	position: relative;
 	opacity: 0;
 	display: flex;
 	height: 80%;
 	flex-flow: row wrap;
-	/*border: 1px solid red;*/
 	overflow: auto;
 }
 
@@ -274,6 +256,7 @@ figure.clip_h:hover div.w_data, figure.clip_h:hover div.w_data_o {
 	-webkit-transition-delay: 0.45s;
 	transition-delay: 0.45s;
 }
+
 
 @media screen and (min-width:1000px) {
 	.container {

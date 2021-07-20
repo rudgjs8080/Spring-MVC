@@ -21,7 +21,7 @@
 <title>회원가입</title>
 </head>
 <link
-	href="${rootPath}/static/css/join.css?ver=2021-07-20-002"
+	href="${rootPath}/static/css/join.css?ver=2021-07-20-003"
 	rel="stylesheet" />
 <body>
 	<figure class="clip">

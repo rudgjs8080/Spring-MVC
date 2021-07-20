@@ -21,7 +21,7 @@
 
 </head>
 <link
-	href="${rootPath}/static/css/mypage.css?ver=2021-07-20-001"
+	href="${rootPath}/static/css/mypage.css?ver=2021-07-20-004"
 	rel="stylesheet" />
 <style>
 tr.hid {
@@ -82,23 +82,6 @@ tr.hid {
 								id="us_pw_ch"
 								class="textForm"
 								placeholder="수정할 비밀번호를 재확인..." /></td>
-					</tr>
-					<tr class="hid">
-						<th>지역선택</th>
-						<td><input
-								id="us_city"
-								class="textForm"
-								value="${MEM.us_city}"
-								readonly="readonly" /></td>
-					</tr>
-					<tr class="hid">
-						<th>상세주소</th>
-						<td><input
-								class="textForm"
-								id="us_dist"
-								name="us_dist"
-								readonly="readonly"
-								value="${MEM.us_dist}" /></td>
 					</tr>
 				</table>
 				<div>

@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 </script>
 </head>
 <link
-	href="${rootPath}/static/css/home_A.css?ver=2021-07-20-001"
+	href="${rootPath}/static/css/home_A.css?ver=2021-07-20-003"
 	rel="stylesheet" />
 <body>
 	<div>
@@ -201,15 +201,12 @@ document.addEventListener("DOMContentLoaded", ()=>{
 					</c:forEach>
 				</div>
 			</div>
+			
 			<div class="item-3">
 				<figure class="clip_h">
 					<div>
-						<img
-							class="clothes"
-							src="${rootPath}/static/images/clothes.png"
-							alt="clothes"
-							style="padding-top: 3%" />
-						<p style="margin: 10px; font-size: 20px">OOTD 추천을 원하시면 화면에 커서를
+						<img class="clothes" src="${rootPath}/static/images/clothes.png"/>
+						<p>OOTD 추천을 원하시면 화면에 커서를
 							올려주세요</p>
 					</div>
 					<figcaption class="o">
@@ -229,6 +226,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 					</figcaption>
 				</figure>
 			</div>
+			
 		</div>
 	</div>
 </body>

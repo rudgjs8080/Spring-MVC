@@ -7,7 +7,6 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.callor.woo.model.ResultVO;
 import com.callor.woo.model.WeatherDTO;
 import com.callor.woo.model.WeatherVO;
 import com.callor.woo.service.DaySelectService;

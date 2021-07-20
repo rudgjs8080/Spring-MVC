@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 <link
 	href="${rootPath}/static/css/home_B.css?ver=2021-07-20-001"
 	rel="stylesheet" />
+	
 <body>
 
 	<div>
@@ -50,6 +51,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 					<h4>WEATHER & OOTD</h4>
 				</div>
 			</div>
+			
 			<div class="item-2">
 				<div class="w_1">
 					<c:forEach
@@ -105,8 +107,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
 							${TD.fcstValue}
 						</c:if>
 					</c:forEach>
-
 				</div>
+				
 				<div class="w_3">
 					<div class="w_3_a">
 						<div>기온</div>
@@ -138,6 +140,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 							<img src="${rootPath}/static/images/humidity.png" />
 						</div>
 					</div>
+					
 					<div class="w_3_a">
 						<div>강수</div>
 						<div>
@@ -200,18 +203,15 @@ document.addEventListener("DOMContentLoaded", ()=>{
 						
 					</c:forEach>
 				</div>
-
-
 			</div>
+			
 			<div class="item-3">
 				<figure class="clip_h">
 					<div>
 						<img
 							class="clothes"
-							src="${rootPath}/static/images/clothes.png"
-							alt="clothes"
-							style="padding-top: 3%" />
-						<p style="margin: 10px; font-size: 20px">OOTD 추천을 원하시면 화면에 커서를
+							src="${rootPath}/static/images/clothes.png"/>
+						<p>OOTD 추천을 원하시면 화면에 커서를
 							올려주세요</p>
 					</div>
 					<figcaption class="o">
@@ -223,6 +223,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 					</figcaption>
 				</figure>
 			</div>
+			
 		</div>
 	</div>
 </body>
