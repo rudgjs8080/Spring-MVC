@@ -53,4 +53,12 @@ public class MemberServiceImplV1 implements MemberService {
 		return null;
 	}
 
+	@Override
+	public int delete(String us_id) {
+		// TODO Auto-generated method stub
+		memDao.delete(us_id);
+
+		return 0;
+	}
+
 }

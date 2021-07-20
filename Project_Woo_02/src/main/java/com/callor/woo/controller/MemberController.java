@@ -95,4 +95,12 @@ public class MemberController {
 		return "redirect:/";
 	}
 
+	@RequestMapping(value = "/mypage/delete", method = RequestMethod.GET)
+	public String delete(String us_id, Model model,HttpSession hSession) {
+		mService.delete(us_id);
+		hSession.removeAttribute("MEMVO");
+		hSession = null;
+		return "redirect:/";
+	}
+
 }

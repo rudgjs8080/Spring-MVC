@@ -103,10 +103,13 @@ tr.hid {
 				</table>
 				<div>
 					<button
-						id="btn_update" class="btn_update"
+						id="btn_update"
 						type="button">정보수정</button>
 					<button
-						id="btn_home" class="btn_home"
+						id="btn_del"
+						type="button">회원탈퇴</button>
+					<button
+						id="btn_home"
 						type="button">HOME</button>
 				</div>
 			</fieldset>
@@ -119,6 +122,7 @@ tr.hid {
    let user_pw_ch = document.querySelector("#us_pw_ch")
    let btn_home = document.querySelector("button#btn_home")
    let btn_update = document.querySelector("button#btn_update")
+   let btn_delete = document.querySelector("button#btn_del")
    
    if(btn_update) {
    btn_update.addEventListener("click",()=>{
@@ -142,5 +146,12 @@ tr.hid {
          location.href="${rootPath}"
       })
    }
+   if(btn_delete) {
+	      btn_delete.addEventListener("click", ()=> {
+	         if(confirm("정말 탈퇴하시겠습니까?") ){
+	            location.href="${rootPath}/mypage/delete?us_id="+"${MEM.us_id}"
+	         }
+	      })
+	   }
 </script>
 </html>

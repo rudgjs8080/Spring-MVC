@@ -10,5 +10,6 @@ public interface MemberService {
 	public MemberVO update(MemberVO memberVO);
 	public MemberVO findById(String id);
 	public MemberVO login(MemberVO memberVO, Model model);
+	public int delete(String us_id);
 
 }

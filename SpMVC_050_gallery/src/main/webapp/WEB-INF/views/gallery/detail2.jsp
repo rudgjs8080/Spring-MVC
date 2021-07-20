@@ -2,97 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="rootPath" value="${pageContext.request.contextPath}" />
-<style>
-div#gallery_box {
-	width: 90%;
-	margin: 10px auto;
-	border: 1px solid #aaa;
-	display: flex;
-}
+<c:url value="/static/css/detail2.css" var="detail2_css"/>
+<link href="${detail2_css }" rel="stylesheet"/>
 
-div#gallery_box div:first-of-type {
-	flex: 1;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 10px;
-}
-
-div#gallery_box div:last-of-type {
-	flex: 3;
-}
-
-div#gallery_files {
-	width: 90%;
-	margin: 10px auto;
-	display: flex;
-	flex-wrap: wrap;;
-	border: 1px solid blue;
-	height: 200px;
-}
-
-div#gallery_files div.gallery_file {
-	width: 200px;
-	height: 200px;
-	padding: 5px;
-	overflow: hidden;
-	position: relative;
-}
-
-div.gallery_file:after {
-	content: "삭제";
-	position: absolute;
-	left: 0;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	background-color: transparent;
-	color: transparent;
-	z-index: 10;
-	transition: 1s;
-	padding: auto;
-}
-
-div.gallery_file:hover:after {
-	background-color: rgba(0, 0, 0, 0.3);
-	color: white;
-	text-align: center;
-}
-
-div#gallery_files img {
-	margin: 2px;
-	width: 200px;
-}
-
-div#gallery_botton_box {
-	width: 90%;
-	margin: 5px auto;
-	text-align: right;
-}
-
-div#gallery_botton_box button {
-	display: inline-block;
-	padding: 12px 20px;
-	outline: 0;
-	border: 0;
-	border-radius: 10px;
-}
-
-div#gallery_botton_box button:hover {
-	box-shadow: 2px 2px 2px #333;
-	cursor: pointer;
-}
-
-div#gallery_botton_box button:nth-of-type(1) {
-	background-color: blue;
-	color: white;
-}
-
-div#gallery_botton_box button:nth-of-type(2) {
-	background-color: red;
-	color: yellow;
-}
-</style>
 <div id="gallery_box">
 	<div>
 		<c:if test="${empty GALLERY.g_image}">

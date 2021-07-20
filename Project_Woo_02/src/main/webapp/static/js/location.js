@@ -20,8 +20,8 @@ function success(position) {
 // 요청 거절, 에러시
 function error(err) {
      
-    let lat = 35.1569526;
-    let lng = 126.9003409
+    let lat = 35.160063;
+    let lng = 126.910108
 
     console.log("ERROR : " + err.code + "/" + err.message);
     location.href=`${rootPath}/api?lat=${lat}&lng=${lng}`
