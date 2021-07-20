@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 </script>
 </head>
 <link
-	href="${rootPath}/static/css/home.css?ver=2021-07-16-001"
+	href="${rootPath}/static/css/home.css?ver=2021-07-20-001"
 	rel="stylesheet" />
 <body>
 

@@ -18,11 +18,10 @@
 <meta
 	name="viewport"
 	content="width=device-width, initial-scale=1.0" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 </head>
 <link
-	href="${rootPath}/static/css/mypage.css?ver=2021-07-19-002"
+	href="${rootPath}/static/css/mypage.css?ver=2021-07-20-001"
 	rel="stylesheet" />
 <style>
 tr.hid {
@@ -30,7 +29,7 @@ tr.hid {
 }
 </style>
 <body>
-	<figure class="snip1432">
+	<figure class="clip">
 		<figcaption>
 			<div>
 				<h1>Changing Information</h1>

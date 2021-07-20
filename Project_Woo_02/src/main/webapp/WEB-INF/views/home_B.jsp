@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 </head>
 
 <link
-	href="${rootPath}/static/css/home_B.css?ver=2021-07-19-003"
+	href="${rootPath}/static/css/home_B.css?ver=2021-07-20-001"
 	rel="stylesheet" />
 <body>
 
@@ -169,7 +169,9 @@ document.addEventListener("DOMContentLoaded", ()=>{
 				</div>
 
 				<div class="w_4">
-					<div class="w_4_a">오늘<br>날씨</div>
+					<div class="w_4_a">
+						오늘<br>날씨
+					</div>
 					<c:forEach
 						items="${TODAY}"
 						var="TD">
@@ -183,23 +185,26 @@ document.addEventListener("DOMContentLoaded", ()=>{
 				</div>
 
 				<div class="w_5">
-					<div class="w_5_a">내일<br>날씨</div>
+					<div class="w_5_a">
+						내일<br>날씨
+					</div>
 					<c:forEach
 						items="${TOMORROW}"
 						var="TM">
-						<c:if test="${TM.category == '3시간 기온'}">
-							<div class="w_5_a">
-								<div>${TM.fcstValue}</div>
-								<div>${TM.fcstTime}</div>
-							</div>
+							<c:if test="${TM.category == '3시간 기온'}">
+						<div class="w_5_a">
+						<div>${TM.fcstValue}</div>
+						<div>${TM.fcstTime}</div>
+						</div>	
 						</c:if>
+						
 					</c:forEach>
 				</div>
 
 
 			</div>
 			<div class="item-3">
-				<figure class="snip1200">
+				<figure class="clip_h">
 					<div>
 						<img
 							class="clothes"

@@ -21,10 +21,10 @@
 <title>회원가입</title>
 </head>
 <link
-	href="${rootPath}/static/css/join.css?ver=2021-07-19-002"
+	href="${rootPath}/static/css/join.css?ver=2021-07-20-002"
 	rel="stylesheet" />
 <body>
-	<figure class="snip1432">
+	<figure class="clip">
 		<figcaption>
 			<div>
 				<h1>Sign Up</h1>

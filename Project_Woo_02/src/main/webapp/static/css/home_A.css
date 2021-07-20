@@ -185,7 +185,7 @@ button.logout, button.mypage {
 	height: 100%;
 }
 
-figure.snip1200 {
+figure.clip_h {
 	position: relative;
 	overflow: hidden;
 	width: 100%;
@@ -194,22 +194,22 @@ figure.snip1200 {
 	font-size: 26px;
 }
 
-figure.snip1200:hover {
+figure.clip_h:hover {
 	transition: 1s;
 }
 
-figure.snip1200 * {
+figure.clip_h * {
 	box-sizing: border-box;
 	transition: all 0.45s ease-in-out;
 }
 
-figure.snip1200 img {
+figure.clip_h img {
 	max-width: 80%;
 	position: relative;
 	opacity: 1;
 }
 
-figure.snip1200 figcaption.o {
+figure.clip_h figcaption.o {
 	position: absolute;
 	top: 5%;
 	left: 7%;
@@ -217,7 +217,7 @@ figure.snip1200 figcaption.o {
 	bottom: 5%;
 }
 
-figure.snip1200 h1 {
+figure.clip_h h1 {
 	display: table;
 	margin: 0 auto;
 	padding: 0 10px;
@@ -228,7 +228,7 @@ figure.snip1200 h1 {
 	font-weight: 400;
 }
 
-figure.snip1200 h1 span {
+figure.clip_h h1 span {
 	font-weight: 800;
 }
 
@@ -265,11 +265,11 @@ div.w_data_div_o img {
 	height: 50%;
 }
 
-figure.snip1200:hover img.clothes, figure.snip1200:hover p {
+figure.clip_h:hover img.clothes, figure.clip_h:hover p {
 	opacity: 0;
 }
 
-figure.snip1200:hover div.w_data, figure.snip1200:hover div.w_data_o {
+figure.clip_h:hover div.w_data, figure.clip_h:hover div.w_data_o {
 	opacity: 1;
 	-webkit-transition-delay: 0.45s;
 	transition-delay: 0.45s;

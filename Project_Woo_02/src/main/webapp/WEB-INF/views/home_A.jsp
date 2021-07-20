@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 </script>
 </head>
 <link
-	href="${rootPath}/static/css/home_A.css?ver=2021-07-19-001"
+	href="${rootPath}/static/css/home_A.css?ver=2021-07-20-001"
 	rel="stylesheet" />
 <body>
 	<div>
@@ -202,7 +202,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 				</div>
 			</div>
 			<div class="item-3">
-				<figure class="snip1200">
+				<figure class="clip_h">
 					<div>
 						<img
 							class="clothes"
