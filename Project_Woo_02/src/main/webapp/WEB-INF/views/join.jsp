@@ -27,7 +27,7 @@
 	<figure class="clip">
 		<figcaption>
 			<div>
-				<h1>Sign Up</h1>
+				<h1>JOIN</h1>
 				<h1>회원가입</h1>
 			</div>
 			<div>
@@ -102,65 +102,76 @@ let btn_join = document.querySelector("button#btn_join")
 let btn_idcheck = document.querySelector("button#id_check")
 let check = "0"
 
+   
 // btn_home을 클릭하면 home으로 이동
 if(btn_home) {
-	btn_home.addEventListener("click",()=> {
-		location.href="${rootPath}"
-	})
+   btn_home.addEventListener("click",()=> {
+      location.href="${rootPath}"
+   })
 }
 if(btn_idcheck) {
-	btn_idcheck.addEventListener("click", ()=>{
-		let json = {user_id}
-		let jsonString = JSON.stringify(json);
-		fetch("${rootPath}/idcheck/" + user_id.value)
-		.then(res=>res.text())
-		.then(result=>{
-		if(result == "1"){
-		alert("이미 사용중인 아이디 입니다")
-		user_id.focus();
-		user_id.value=""
-		return false;
-		} else {
-		alert("사용할 수 있는 아이디 입니다")
-		check = "1";
-		}
-		})
-	})
+   btn_idcheck.addEventListener("click", ()=>{
+      fetch("${rootPath}/idcheck/" + user_id.value)
+      .then(res=>res.text())
+      .then(result=>{
+         if(user_id.value === ""){
+            alert("ID를 입력하세요")
+            user_id.focus();
+            return false
+            }
+      if(result == "1"){
+      alert("이미 사용중인 아이디 입니다")
+      user_id.focus();
+      user_id.value=""
+      return false;
+      } 
+      if (confirm("사용할 수 있는 아이디 입니다. ID를 사용하시겠습니까?")) {
+         //user_id.readOnly="true";
+      check = "1";
+      } else {
+         user_id.focus();
+         user_id.value=""
+         
+      }
+      })
+   })
 }
-
+user_id.addEventListener('change',()=>{
+    check = "0";
+ })
 // btn_join을 클릭하면
 if(btn_join) {
-	btn_join.addEventListener("click",()=>{
-		if(user_name.value === "") {
-			alert("이름을 입력하세요")
-			user_name.focus();
-			return false
-		}
-		if(user_id.value === ""){
-		alert("ID를 입력하세요")
-		user_id.focus();
-		return false
-		}
-		if(user_pwd.value === ""){
-		alert("비밀번호를 입력해주세요")
-		user_pwd.focus();
-		return false
-		}
-		if(user_pwd_ch.value !== user_pwd.value){
-		alert("비밀번호가 일치하지 않습니다.")
-		user_pwd_ch.focus();
-		return false
-		}
-		if(check === "0") {
-			alert("ID 중복확인을 해주세요")
-			user_id.focus();
-			return false
-		} else {
-			document.querySelector("form.form_join").submit();
-		}
-	    
-	})
+   btn_join.addEventListener("click",()=>{
+      if(user_name.value === "") {
+         alert("이름을 입력하세요")
+         user_name.focus();
+         return false
+      }
+      if(user_id.value === ""){
+      alert("ID를 입력하세요")
+      user_id.focus();
+      return false
+      }
+      if(user_pwd.value === ""){
+      alert("비밀번호를 입력해주세요")
+      user_pwd.focus();
+      return false
+      }
+      if(user_pwd_ch.value !== user_pwd.value){
+      alert("비밀번호가 일치하지 않습니다.")
+      user_pwd_ch.focus();
+      return false
+      }
+      if(check === "0") {
+         alert("ID 중복확인을 해주세요")
+         user_id.focus();
+         return false
+      } else {
+         document.querySelector("form.form_join").submit();
+      }
+       
+   })
 }
 
-  </script>
+</script>
 </html>
