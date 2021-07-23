@@ -18,7 +18,7 @@
 <meta
 	name="viewport"
 	content="width=device-width, initial-scale=1.0" />
-
+<title>Mypage</title>
 </head>
 <link
 	href="${rootPath}/static/css/mypage.css?ver=2021-07-20-004"
